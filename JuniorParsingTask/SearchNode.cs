@@ -4,43 +4,31 @@ namespace JuniorParsingTask
 
     public class SearchNode
     {
+        private bool result;
 
-        public bool TryGetNode(string value, out Node node)
+        public bool TryGetNode(string value, out Node? node)
         {
             var tree = TreeService.Create();
             node = tree.Root;
-
-            foreach (var item in node.Children)
-                {
-                    if (item.Value == value)
-                    {
-                        node = item;
-                        return true;
-
-                    }
-                    else
-                    {
-                        foreach (var i in item.Children)
-                        {
-                        node = item;
-                            return true;
-                        }
-                    }
-                }
-//            }
-            //else
-            //{
-                node = null;
-                System.Console.WriteLine("Tree is empty!");
-                return false;
-            //}
-
-
-
-
+            result = false; 
+            TryGetNodeRec(value, node);
+            if (result == false) node = null;
+            return result;
         }
-
-    
+        private void TryGetNodeRec(string value, Node node)
+        {
+            foreach (var item in node.Children)
+            {
+                node = item;
+                if (item.Value == value)
+                {
+                    result = true;
+                    break;
+                }
+                else if (item.Children != null)
+                    TryGetNodeRec(value, node);
+            }
+        }
     }
 }
 

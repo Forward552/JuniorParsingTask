@@ -18,6 +18,16 @@ public class Node
 
     public void AddChildren(params Node[] children)
     {
-        Children.AddRange(children); 
+        Children.AddRange(children);
     }
+
+    
+
+   
+
+
+
+
+
+
 }
