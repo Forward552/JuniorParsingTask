@@ -89,8 +89,6 @@ namespace JuniorParsingTaskTest
             Assert.False(result);
 
         }
-
-
         [Fact]
         public void TestNotFound()
         {
@@ -100,20 +98,14 @@ namespace JuniorParsingTaskTest
 
             //act
 
-            bool result = s.TryGetNode("fake", out node);
+            bool result = s.TryGetNode("404", out node);
 
             //assert
 
-            Assert.False(result);
             Assert.Null(node);
+            Assert.False(result);
 
         }
-
-
-
-
-
-
 
     }
 }
